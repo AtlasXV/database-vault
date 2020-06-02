@@ -8,9 +8,9 @@ import (
 )
 
 type Vault struct {
-	username string
-	password string
-	expire   int64
+	Username string
+	Password string
+	Expire   int64
 	client   *api.Client
 }
 
@@ -52,8 +52,8 @@ func (v *Vault) GetCreds(role string) error {
 		return err
 	}
 
-	v.username = secret.Data["username"].(string)
-	v.password = secret.Data["password"].(string)
-	v.expire = time.Now().Unix() + int64(secret.LeaseDuration)
+	v.Username = secret.Data["username"].(string)
+	v.Password = secret.Data["password"].(string)
+	v.Expire = time.Now().Unix() + int64(secret.LeaseDuration)
 	return nil
 }

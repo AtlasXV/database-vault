@@ -1,4 +1,4 @@
-module github.com/AtlasXV/mongo-vault
+module github.com/AtlasXV/database-vault
 
 go 1.13
 

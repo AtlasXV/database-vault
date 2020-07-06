@@ -7,6 +7,8 @@ import (
 	"github.com/hashicorp/vault/api"
 )
 
+const REFRESH_GAP time.Duration = 36000 * time.Second
+
 type Vault struct {
 	Username string
 	Password string
@@ -39,7 +41,7 @@ func (v *Vault) GetCreds(role string) error {
 		fmt.Println(ttl_err)
 		return ttl_err
 	}
-	if token_ttl <= 7200 {
+	if token_ttl <= REFRESH_GAP {
 		_, renew_err := v.client.Auth().Token().RenewSelf(2764800)
 		if renew_err != nil {
 			fmt.Println(renew_err)
